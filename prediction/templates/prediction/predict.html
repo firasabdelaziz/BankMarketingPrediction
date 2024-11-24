@@ -1,0 +1,65 @@
+{% extends 'prediction/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center mb-0">Term Deposit Prediction</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" id="predictionForm">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="alert alert-danger mt-1">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" id="predictButton">
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            Predict
+                        </button>
+                    </div>
+                </form>
+
+                {% if result %}
+                <div class="mt-4">
+                    <h3 class="text-center">Prediction Result</h3>
+                    {% if result.error %}
+                    <div class="alert alert-danger">
+                        {{ result.error }}
+                    </div>
+                    {% else %}
+                    <div class="alert {% if result.prediction %}alert-success{% else %}alert-warning{% endif %}">
+                        <h4 class="text-center mb-3">
+                            {% if result.prediction %}
+                            Client is likely to subscribe to a term deposit
+                            {% else %}
+                            Client is unlikely to subscribe to a term deposit
+                            {% endif %}
+                        </h4>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('predictionForm').addEventListener('submit', function() {
+    const button = document.getElementById('predictButton');
+    const spinner = button.querySelector('.spinner-border');
+    button.disabled = true;
+    spinner.classList.remove('d-none');
+});
+</script>
+{% endblock %}
