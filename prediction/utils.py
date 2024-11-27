@@ -10,7 +10,7 @@ class PredictionModel:
         self.load_model()
 
     def load_model(self):
-        """Load the saved XGBoost regressor model"""
+        """Load the saved XGBoost classifier model"""
         model_path = os.path.join(
             settings.BASE_DIR,
             'prediction',
@@ -18,37 +18,44 @@ class PredictionModel:
             'xgboost_model.json'
         )
 
-        # Ensure the model is loaded as a regressor
-        self.model = xgb.XGBRegressor()
+        # Load the model as a classifier
+        self.model = xgb.XGBClassifier()
         self.model.load_model(model_path)
-        print("Model is a regressor")
+        print("Model is a classifier")
 
-    def preprocess_features(self, contract_duration, employee_variation_rate, client_age):
+    def preprocess_features(self, contact_duration, employee_variation_rate, client_age):
         """Preprocess the input features"""
-        # Create feature array with the same order as training data
-        # Initialize a zero array with the expected number of features
-        features = np.zeros((1, 99))
-
-        # Assign the values of your features to the first three positions
-        features[0, :3] = [contract_duration, employee_variation_rate, client_age]
+        # Initialize array with 103 features set to zero
+        features = np.zeros((1, 103))
+        
+        # Set the three known features at their correct positions
+        features[0, 0] = contact_duration
+        features[0, 1] = employee_variation_rate
+        features[0, 2] = client_age
+        
         return features
 
-    def predict(self, contract_duration, employee_variation_rate, client_age):
+    def predict(self, contact_duration, employee_variation_rate, client_age):
         """Make prediction using the loaded model"""
         try:
             # Preprocess features
             features = self.preprocess_features(
-                contract_duration,
+                contact_duration,
                 employee_variation_rate,
                 client_age
             )
 
-            # Predict using the regressor
+            # Get class probabilities
+            probabilities = self.model.predict_proba(features)[0]
+            # Get predicted class
             prediction = self.model.predict(features)[0]
 
             return {
                 'success': True,
-                'prediction': float(prediction),  # Output the prediction
+                'prediction': int(prediction),
+                'probabilities': {
+                    f'class_{i}': float(prob) for i, prob in enumerate(probabilities)
+                }
             }
 
         except Exception as e:

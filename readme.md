@@ -1,6 +1,6 @@
 # Bank Marketing Prediction
 
-Welcome to the **Bank Marketing Prediction** project! This web application is designed to predict whether a client is likely to subscribe to a term deposit based on several factors like contract duration, employee variation rate, and client age.
+Welcome to the **Bank Marketing Prediction** project! This web application is designed to predict whether a client is likely to subscribe to a term deposit based on several factors like contact duration, employee variation rate, and client age.
 
 ## 🚀 Getting Started
 
@@ -17,7 +17,7 @@ Before getting started, ensure that you have the following installed:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/bank-marketing-prediction.git
+git clone https://github.com/firasabdelaziz/bank-marketing-prediction.git
 cd bank-marketing-prediction
 ```
 
@@ -47,14 +47,14 @@ python manage.py runserver
 
 ## 📐 Features
 
-- **Predict Client Subscription**: Use the form to input contract duration, employee variation rate, and client age to predict whether a client will subscribe to a term deposit.
+- **Predict Client Subscription**: Use the form to input contact duration, employee variation rate, and client age to predict whether a client will subscribe to a term deposit.
 - **XGBoost Machine Learning Model**: The predictions are powered by an XGBoost model (`xgboost_model.json`) that processes input data and returns a probability.
 - **Interactive UI**: Built with **Bootstrap 5**, the UI is responsive and user-friendly, providing a clean and modern design.
 
 ## 🖥️ Files Overview
 
 ### 1. **`prediction/forms.py`**
-   - Contains the form where users input values for contract duration, employee variation rate, and client age.
+   - Contains the form where users input values for contact duration, employee variation rate, and client age.
 
 ### 2. **`prediction/views.py`**
    - Handles the view logic to process the form and pass the results to the template.
@@ -79,7 +79,7 @@ python manage.py runserver
 
 ## 💡 How It Works
 
-1. **User Input**: The user enters the contract duration, employee variation rate, and client age into the form.
+1. **User Input**: The user enters the contact duration, employee variation rate, and client age into the form.
 2. **Prediction**: Upon submission, the form data is sent to the backend, where the XGBoost model is used to predict whether the client will subscribe to a term deposit.
 3. **Results**: The prediction is displayed along with the probability percentage.
 

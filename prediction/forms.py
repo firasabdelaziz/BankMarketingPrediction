@@ -2,10 +2,10 @@ from django import forms
 
 class PredictionForm(forms.Form):
     contact_duration = forms.IntegerField(
-        label='Contact Duration (days)',
+        label='Contact Duration (seconds)',
         widget=forms.NumberInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Enter contract duration in days'
+            'placeholder': 'Enter contact duration in days'
         }),
         min_value=1
     )
