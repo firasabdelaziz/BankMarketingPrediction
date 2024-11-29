@@ -1,0 +1,10 @@
+{
+    "stacking": {
+        "accuracy": 0.955984555984556,
+        "classification_report": "              precision    recall  f1-score   support\n\n           0       0.95      0.96      0.96      5195\n           1       0.96      0.95      0.96      5165\n\n    accuracy                           0.96     10360\n   macro avg       0.96      0.96      0.96     10360\nweighted avg       0.96      0.96      0.96     10360\n"
+    },
+    "voting": {
+        "accuracy": 0.9524131274131274,
+        "classification_report": "              precision    recall  f1-score   support\n\n           0       0.93      0.98      0.95      5195\n           1       0.98      0.93      0.95      5165\n\n    accuracy                           0.95     10360\n   macro avg       0.95      0.95      0.95     10360\nweighted avg       0.95      0.95      0.95     10360\n"
+    }
+}

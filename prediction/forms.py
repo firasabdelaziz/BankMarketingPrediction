@@ -10,7 +10,7 @@ class PredictionForm(forms.Form):
         min_value=1
     )
     
-    employee_variation_rate = forms.FloatField(
+    employment_variation_rate = forms.FloatField(
         label='Employee Variation Rate',
         widget=forms.NumberInput(attrs={
             'class': 'form-control',

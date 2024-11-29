@@ -10,13 +10,13 @@ def predict_view(request):
         if form.is_valid():
             # Get form data
             contact_duration = form.cleaned_data['contact_duration']
-            employee_variation_rate = form.cleaned_data['employee_variation_rate']
+            employment_variation_rate = form.cleaned_data['employment_variation_rate']
             client_age = form.cleaned_data['client_age']
 
             # Make prediction using the model
             prediction_result = prediction_model.predict(
                 contact_duration,
-                employee_variation_rate,
+                employment_variation_rate,
                 client_age
             )
 
